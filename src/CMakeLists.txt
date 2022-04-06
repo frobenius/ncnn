@@ -302,6 +302,10 @@ else()
         target_compile_options(ncnn PRIVATE -ffast-math)
     endif()
 
+    if(NCNN_FORCE_SSE4_2)
+        target_compile_options(ncnn PRIVATE -msse3 -mssse3 -msse4 -msse4.1 -msse4.2)
+    endif()
+
     if(PI3)
         target_compile_options(ncnn PRIVATE -march=native -mfpu=neon -mfloat-abi=hard)
         target_compile_definitions(ncnn PRIVATE __ARM_NEON __ANDROID__)
